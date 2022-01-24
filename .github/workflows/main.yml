@@ -33,13 +33,19 @@ jobs:
         run: mvn --batch-mode --update-snapshots verify
      # - run: mkdir staging && cp target/*.jar staging
       
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: achinoam84
+          password: R56yt921StD))4u
+          
       - name: Build & Push Image
         id: build-image
       #  env:
       #              DOCKER_BUILDKIT: 1
         run: |
                     docker build -t achinoam84/test:github .
-                    #docker push achinoam84/test:github
+                    docker push achinoam84/test:github
                     echo "::set-output name=image::$achinoam84/test:github"
 
       
@@ -48,7 +54,9 @@ jobs:
        #   name: Package
         #  path: staging
    
-      - name: Upload image
-        uses: ishworkh/docker-image-artifact-upload@v1
-        with:
-          image: "achinoam84/test:github"
+      #- name: Upload image
+      #  uses: ishworkh/docker-image-artifact-upload@v1
+       # with:
+        #  image: "achinoam84/test:github"
+          
+      
