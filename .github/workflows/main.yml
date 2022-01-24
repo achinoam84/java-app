@@ -31,8 +31,19 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
-      - run: mkdir staging && cp target/*.jar staging
+     # - run: mkdir staging && cp target/*.jar staging
+      
+      - name: Build & Push Image
+        id: build-image
+      #  env:
+      #              DOCKER_BUILDKIT: 1
+        run: |
+                    docker build -t achinoam84/test:github .
+                    #docker push achinoam84/test:github
+                    echo "::set-output name=image::$achinoam84/test:github"
+
+      
       - uses: actions/upload-artifact@v2
         with:
           name: Package
-          path: staging
+          path: target/
