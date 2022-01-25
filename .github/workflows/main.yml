@@ -41,12 +41,15 @@ jobs:
           
       - name: Build & Push Image
         id: build-image
-      #  env:
-      #              DOCKER_BUILDKIT: 1
+          #env:
+      
+      #                 DOCKER_BUILDKIT: 1
+
         run: |
-                    docker build -t achinoam84/test:github -t achinoam84/test:new .
-                    docker push achinoam84/test:new
-                    echo "::set-output name=image::$achinoam84/test:github"
+                    git_hash=$(git rev-parse --short "$GITHUB_SHA")
+                    docker build -t achinoam84/test:$git_hash .
+                    docker push achinoam84/test:$git_hash
+                    echo "::set-output name=image::$achinoam84/test:GITHUB_SHA"
 
       
      # - uses: actions/upload-artifact@v2
