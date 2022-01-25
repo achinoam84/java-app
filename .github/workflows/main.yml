@@ -44,8 +44,8 @@ jobs:
       #  env:
       #              DOCKER_BUILDKIT: 1
         run: |
-                    docker build -t achinoam84/test:github -t achinoam84/test:new .
-                    docker push achinoam84/test:new
+                    docker build -t achinoam84/test:github -t achinoam84/test:$github_ref_name .
+                    docker push achinoam84/test:$github_ref_name
                     echo "::set-output name=image::$achinoam84/test:github"
 
       
