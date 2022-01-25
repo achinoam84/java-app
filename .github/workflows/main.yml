@@ -50,7 +50,7 @@ jobs:
                     docker build -t achinoam84/test:$git_hash -t achinoam84/test:github .
                     docker push achinoam84/test:$git_hash
                     docker push achinoam84/test:github
-                    echo "::set-output name=image::$achinoam84/test:GITHUB_SHA"
+                   # echo "::set-output name=image::$achinoam84/test:GITHUB_SHA"
 
       
      # - uses: actions/upload-artifact@v2
