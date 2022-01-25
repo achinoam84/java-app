@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
-    @GetMapping("/hello")
-    String hello() {
+    @GetMapping("/demo")
+    String demo() {
         return "Hello, world! I'm fucking yaml-developer!";
     }
 }
