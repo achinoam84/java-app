@@ -41,11 +41,12 @@ jobs:
           
       - name: Build & Push Image
         id: build-image
-        env:
-          git_hash=$(git rev-parse --short "$GITHUB_SHA")
+          #env:
+      
       #                 DOCKER_BUILDKIT: 1
 
         run: |
+                    git_hash=$(git rev-parse --short "$GITHUB_SHA")
                     docker build -t achinoam84/test:$git_hash.
                     docker push achinoam84/test:$git_hash
                     echo "::set-output name=image::$achinoam84/test:GITHUB_REF_NAME"
