@@ -44,9 +44,9 @@ jobs:
       #  env:
       #              DOCKER_BUILDKIT: 1
         run: |
-                    docker build -t achinoam84/test:github -t achinoam84/test:$GITHUB_REF_NAME.
+                    docker build -t achinoam84/test:$GITHUB_REF_NAME.
                     docker push achinoam84/test:$GITHUB_REF_NAME
-                    echo "::set-output name=image::$achinoam84/test:github"
+                    echo "::set-output name=image::$achinoam84/test:GITHUB_REF_NAME"
 
       
      # - uses: actions/upload-artifact@v2
