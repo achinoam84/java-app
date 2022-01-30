@@ -57,6 +57,9 @@ jobs:
         uses: azure/setup-kubectl@v1
 
       - name: Setup Huawei Cloud K8S environment
+         env:
+            hostname: 'cce.ru-moscow-1.hc.sbercloud.ru'
+          
         uses: huaweicloud/cce-cluster-credentials@v1
         with:
             region: "${{ secrets.REGION }}"
@@ -64,8 +67,7 @@ jobs:
             access-key-secret: "${{ secrets.SECRET_ACCESS_KEY }}"
             project-id: "${{ secrets.PROJECT_ID }}"
             cluster-id: "${{ secrets.CLUSTER_ID }}"
-            hostname: 'cce.ru-moscow-1.hc.sbercloud.ru'
-
+            
       - name: Run the Docker image
         run: |-
             kubectl config use-context external # HuaweiCloud specific !
