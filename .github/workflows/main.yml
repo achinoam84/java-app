@@ -57,8 +57,8 @@ jobs:
         uses: azure/setup-kubectl@v1
 
       - name: Setup Huawei Cloud K8S environment
-         env:
-            hostname: 'cce.ru-moscow-1.hc.sbercloud.ru'
+  env:
+        hostname: 'cce.ru-moscow-1.hc.sbercloud.ru'
           
         uses: huaweicloud/cce-cluster-credentials@v1
         with:
