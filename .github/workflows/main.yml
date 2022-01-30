@@ -51,6 +51,26 @@ jobs:
                     docker push achinoam84/test:$git_hash
                     docker push achinoam84/test:github
                    # echo "::set-output name=image::$achinoam84/test:GITHUB_SHA"
+                   
+                   
+      - name: "Install kubectl"
+        uses: azure/setup-kubectl@v1
+
+      - name: Setup Huawei Cloud K8S environment
+        uses: huaweicloud/cce-cluster-credentials@v1
+        with:
+            region: "${{ secrets.REGION }}"
+            access-key-id: "${{ secrets.ACCESS_KEY_ID }}"
+            access-key-secret: "${{ secrets.SECRET_ACCESS_KEY }}"
+            project-id: "${{ secrets.PROJECT_ID }}"
+            cluster-id: "${{ secrets.CLUSTER_ID }}"
+
+      - name: Run the Docker image
+        run: |-
+            kubectl config use-context external # HuaweiCloud specific !
+            kubectl run super_app --rm -i --image achinoam84/test:github --restart=Never --tty=false
+     
+
 
       
      # - uses: actions/upload-artifact@v2
