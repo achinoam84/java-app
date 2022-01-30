@@ -12,7 +12,9 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
+env:
+ hostname: "cce.ru-moscow-1.hc.sbercloud.ru"
+ 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -57,9 +59,6 @@ jobs:
         uses: azure/setup-kubectl@v1
 
       - name: Setup Huawei Cloud K8S environment
-  env:
-        hostname: "cce.ru-moscow-1.hc.sbercloud.ru"
-          
         uses: huaweicloud/cce-cluster-credentials@v1
         with:
             region: "${{ secrets.REGION }}"
